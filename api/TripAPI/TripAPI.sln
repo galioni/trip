@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API", "Trip.API\Trip.API.csproj", "{1EC017B5-2C83-4390-A979-99BEC5B702E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Test", "Trip.API.Test\Trip.API.Test.csproj", "{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Core.Test", "Trip.API.Core.Test\Trip.API.Core.Test.csproj", "{3EDECAAF-77CA-4D03-954B-CFE664F76D26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Infrastructure.Test", "Trip.API.Infrastructure.Test\Trip.API.Infrastructure.Test.csproj", "{78EBB394-6B19-434D-A5CA-D1601A1E0D90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{361AAC53-DBA2-4B6E-857F-AF6D0792B27B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.API.Infrastructure", "Trip.API.Infrastructure\Trip.API.Infrastructure.csproj", "{8D8B6825-6C19-44D3-81CA-49647BF9FC61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.API.Core", "Trip.API.Core\Trip.API.Core.csproj", "{078FDD87-151C-4936-A9DE-E59BD494ED64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EC017B5-2C83-4390-A979-99BEC5B702E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC017B5-2C83-4390-A979-99BEC5B702E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC017B5-2C83-4390-A979-99BEC5B702E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC017B5-2C83-4390-A979-99BEC5B702E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDECAAF-77CA-4D03-954B-CFE664F76D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDECAAF-77CA-4D03-954B-CFE664F76D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDECAAF-77CA-4D03-954B-CFE664F76D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDECAAF-77CA-4D03-954B-CFE664F76D26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EBB394-6B19-434D-A5CA-D1601A1E0D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EBB394-6B19-434D-A5CA-D1601A1E0D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EBB394-6B19-434D-A5CA-D1601A1E0D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EBB394-6B19-434D-A5CA-D1601A1E0D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3ADFA74B-3FDD-4551-B3E2-AFAFDD646F11} = {361AAC53-DBA2-4B6E-857F-AF6D0792B27B}
+		{3EDECAAF-77CA-4D03-954B-CFE664F76D26} = {361AAC53-DBA2-4B6E-857F-AF6D0792B27B}
+		{78EBB394-6B19-434D-A5CA-D1601A1E0D90} = {361AAC53-DBA2-4B6E-857F-AF6D0792B27B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96BF24B8-AAAC-455D-8CED-1FF83D67DD6F}
+	EndGlobalSection
+EndGlobal
