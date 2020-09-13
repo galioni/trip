@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Trip.API.Infrastructure.Entities;
 using Trip.API.Infrastructure.Repositories;
 
 namespace Trip.API.Infrastructure

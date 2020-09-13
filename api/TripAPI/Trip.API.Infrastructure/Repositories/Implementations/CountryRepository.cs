@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Trip.API.Core.Domain.Entities;
 using Trip.API.Infrastructure.Context;
 using Trip.API.Infrastructure.Entities;
 
 namespace Trip.API.Infrastructure.Repositories
 {
-	public class CountryRepository : GenericRepository<CountryEntity>, ICountryRepository
+	public class CountryRepository : GenericRepository<Country>, ICountryRepository
 	{
 		private readonly IMapper _mapper;
 		TripDbContext _context;
@@ -23,7 +22,7 @@ namespace Trip.API.Infrastructure.Repositories
 			_mapper = mapper;
 		}
 
-		public override void Delete(CountryEntity entityToDelete)
+		public override void Delete(Country entityToDelete)
 		{
 			throw new NotImplementedException();
 		}
@@ -43,28 +42,28 @@ namespace Trip.API.Infrastructure.Repositories
 				return null;
 		}
 
-		public override async Task<IEnumerable<CountryEntity>> GetAsync(Expression<Func<CountryEntity, bool>> filter = null, Func<IQueryable<CountryEntity>, IOrderedQueryable<CountryEntity>> orderBy = null,
+		public override async Task<IEnumerable<Country>> GetAsync(Expression<Func<Country, bool>> filter = null, Func<IQueryable<Country>, IOrderedQueryable<Country>> orderBy = null,
 			string includeProperties = "")
 		{
 			return await _context.Countries.ToListAsync();
 		}
 
-		public override async Task<CountryEntity> GetByIDAsync(object id)
+		public override async Task<Country> GetByIDAsync(object id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public override async Task<IEnumerable<CountryEntity>> GetWithRawSqlAsync(string query, params object[] parameters)
+		public override async Task<IEnumerable<Country>> GetWithRawSqlAsync(string query, params object[] parameters)
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void Insert(CountryEntity entity)
+		public override void Insert(Country entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void Update(CountryEntity entityToUpdate)
+		public override void Update(Country entityToUpdate)
 		{
 			throw new NotImplementedException();
 		}

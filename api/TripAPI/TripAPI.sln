@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{361AAC53
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.API.Infrastructure", "Trip.API.Infrastructure\Trip.API.Infrastructure.csproj", "{8D8B6825-6C19-44D3-81CA-49647BF9FC61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.API.Core", "Trip.API.Core\Trip.API.Core.csproj", "{078FDD87-151C-4936-A9DE-E59BD494ED64}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D8B6825-6C19-44D3-81CA-49647BF9FC61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{078FDD87-151C-4936-A9DE-E59BD494ED64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

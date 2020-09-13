@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Trip.API.Infrastructure.Context;
-using Trip.API.Infrastructure.Entities;
 using Trip.API.Infrastructure.Repositories;
 
 namespace Trip.API.Infrastructure

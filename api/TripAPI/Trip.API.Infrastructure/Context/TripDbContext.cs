@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Trip.API.Core.Domain.Entities;
 using Trip.API.Infrastructure.Entities;
 
 namespace Trip.API.Infrastructure.Context
@@ -14,7 +13,7 @@ namespace Trip.API.Infrastructure.Context
 		{
 		}
 
-		public DbSet<CountryEntity> Countries { set; get; }
+		public DbSet<Country> Countries { set; get; }
 
 		public override int SaveChanges()
 		{

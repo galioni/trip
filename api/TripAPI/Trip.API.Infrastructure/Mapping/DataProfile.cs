@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Trip.API.Core.Domain.Entities;
-using Trip.API.Infrastructure.Entities;
 
 namespace Trip.API.Infrastructure.Mapping
 {
@@ -8,8 +6,8 @@ namespace Trip.API.Infrastructure.Mapping
 	{
 		public DataProfile()
 		{
-			CreateMap<CountryEntity, Country>().ConstructUsing(x => new Country { Code = x.Code, Created = x.Created, Id = x.Id, IsActive = x.IsActive, Modified = x.Modified, Name = x.Name });
-			CreateMap<Country, CountryEntity>().ConstructUsing(x => new CountryEntity { Code = x.Code, Created = x.Created, Id = x.Id, IsActive = x.IsActive, Modified = x.Modified, Name = x.Name });
+			//CreateMap<Country, CountryEntity>().ConstructUsing(x => new Country { Code = x.Code, Created = x.Created, Id = x.Id, IsActive = x.IsActive, Modified = x.Modified, Name = x.Name });
+			//CreateMap<CountryEntity, Country>().ConstructUsing(x => new Country { Code = x.Code, Created = x.Created, Id = x.Id, IsActive = x.IsActive, Modified = x.Modified, Name = x.Name });
 		}
 	}
 }

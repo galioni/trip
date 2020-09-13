@@ -10,3 +10,7 @@ create table dbo.Country (
   Modified DateTime NOT NULL,
   CONSTRAINT PK_Person PRIMARY KEY (ID)
 )
+
+insert into dbo.Country (Name, Code, IsActive, Created, Modified) values ('Brazil', 'BRL', '1', getdate(), getdate());
+insert into dbo.Country (Name, Code, IsActive, Created, Modified) values ('United Kingdom', 'GBP', '1', getdate(), getdate());
+select * from dbo.Country;

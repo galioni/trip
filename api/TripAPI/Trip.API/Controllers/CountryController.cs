@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Trip.API.Infrastructure;
 using Trip.API.Infrastructure.Entities;
 using Trip.API.Infrastructure.Repositories;
+using Trip.API.Models;
 
 namespace Trip.API.Controllers
 {
@@ -25,7 +26,7 @@ namespace Trip.API.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var countries = await _unitOfWork.GetRepository<CountryEntity>().GetAsync();
+			var countries = await _unitOfWork.GetRepository<Country>().GetAsync();
 
 			return new OkObjectResult(countries);
 		}
@@ -36,6 +37,22 @@ namespace Trip.API.Controllers
 			var countries = await _countryRepository.FindByCodeAsync(code);
 
 			return new OkObjectResult(countries);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Post(CountryModel model)
+		{
+			var countryEntity = new Country()
+			{
+				Code = model.Code,
+				IsActive = true,
+				Name = model.Name
+			};
+
+			_unitOfWork.GetRepository<Country>().Insert(countryEntity);
+			_unitOfWork.Commit();
+
+			return new OkResult();
 		}
 	}
 }
