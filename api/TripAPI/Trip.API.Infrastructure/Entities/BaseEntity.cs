@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trip.API.Infrastructure.Entities
 {
-	class BaseEntity
+	public class BaseEntity
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Key]

@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Trip.API.Core.Interfaces.Gateways.Repositories;
+using Trip.API.Infrastructure;
 using Trip.API.Infrastructure.Context;
 using Trip.API.Infrastructure.Repositories;
+using AutoMapper;
+using Trip.API.Infrastructure.Mapping;
 
 namespace Trip.API
 {
@@ -28,7 +30,16 @@ namespace Trip.API
 				options.UseLazyLoadingProxies(true);
 			});
 
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<ICountryRepository, CountryRepository>();
+
+			var mapperConfig = new MapperConfiguration(mc =>
+			{
+				mc.AddProfile(new DataProfile());
+			});
+
+			IMapper mapper = mapperConfig.CreateMapper();
+			services.AddSingleton(mapper);
 
 			services.AddControllers();
 		}
