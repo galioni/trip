@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trip.API.Infrastructure.Entities
+namespace Trip.API.Data.Entities
 {
 	public class BaseEntity
 	{

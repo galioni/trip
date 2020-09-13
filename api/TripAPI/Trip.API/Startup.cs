@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Trip.API.Core.Mapping;
-using Trip.API.Core.Repositories;
-using Trip.API.Infrastructure;
-using Trip.API.Infrastructure.Context;
+using Trip.API.Core;
+using Trip.API.Core.Services.Implementations;
+using Trip.API.Core.Services.Interfaces;
+using Trip.API.Data;
+using Trip.API.Data.Context;
 
 namespace Trip.API
 {
@@ -24,24 +25,18 @@ namespace Trip.API
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddControllers();
+
 			services.AddDbContext<TripDbContext>(options =>
 			{
-				options.UseSqlServer(Configuration.GetConnectionString("Default"));
+				options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("Trip.API.Data"));
 				options.UseLazyLoadingProxies(true);
 			});
 
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
-			services.AddScoped<ICountryRepository, CountryRepository>();
+			services.AddTransient<ICountryService, CountryService>();
 
-			var mapperConfig = new MapperConfiguration(mc =>
-			{
-				mc.AddProfile(new DataProfile());
-			});
-
-			IMapper mapper = mapperConfig.CreateMapper();
-			services.AddSingleton(mapper);
-
-			services.AddControllers();
+			services.AddAutoMapper(typeof(Startup));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

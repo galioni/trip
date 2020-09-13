@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Trip.API.Infrastructure\Trip.API.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

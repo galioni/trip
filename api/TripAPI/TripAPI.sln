@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Test", "Trip.API.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Core.Test", "Trip.API.Core.Test\Trip.API.Core.Test.csproj", "{3EDECAAF-77CA-4D03-954B-CFE664F76D26}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Infrastructure.Test", "Trip.API.Infrastructure.Test\Trip.API.Infrastructure.Test.csproj", "{78EBB394-6B19-434D-A5CA-D1601A1E0D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Infrastructure.Test", "Trip.API.Infrastrucutre.Test\Trip.API.Infrastructure.Test.csproj", "{78EBB394-6B19-434D-A5CA-D1601A1E0D90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{361AAC53-DBA2-4B6E-857F-AF6D0792B27B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.API.Infrastructure", "Trip.API.Infrastructure\Trip.API.Infrastructure.csproj", "{8D8B6825-6C19-44D3-81CA-49647BF9FC61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Data", "Trip.API.Data\Trip.API.Data.csproj", "{8D8B6825-6C19-44D3-81CA-49647BF9FC61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.API.Core", "Trip.API.Core\Trip.API.Core.csproj", "{77CE7489-918A-446A-B5C6-DA730D6FE6AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Api.Service", "Trip.Api.Service\Trip.Api.Service.csproj", "{2F6ADAD5-8E68-4BBE-943C-296F7D99930A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{77CE7489-918A-446A-B5C6-DA730D6FE6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CE7489-918A-446A-B5C6-DA730D6FE6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CE7489-918A-446A-B5C6-DA730D6FE6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6ADAD5-8E68-4BBE-943C-296F7D99930A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6ADAD5-8E68-4BBE-943C-296F7D99930A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6ADAD5-8E68-4BBE-943C-296F7D99930A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6ADAD5-8E68-4BBE-943C-296F7D99930A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

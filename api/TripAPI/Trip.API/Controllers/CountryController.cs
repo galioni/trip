@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Trip.API.Core.Repositories;
-using Trip.API.Infrastructure;
-using Trip.API.Infrastructure.Entities;
+using Trip.API.Core.Models;
+using Trip.API.Core.Services.Interfaces;
 using Trip.API.Models;
+using Trip.API.Resources;
 
 namespace Trip.API.Controllers
 {
@@ -14,43 +16,46 @@ namespace Trip.API.Controllers
 	public class CountryController : ControllerBase
 	{
 		private readonly ILogger<CountryController> _logger;
-		private ICountryRepository _countryRepository = null;
+		private readonly IMapper _mapper;
+		private readonly ICountryService _countryService;
 
-		public CountryController(ILogger<CountryController> logger, ICountryRepository countryRepository)
+		public CountryController(ILogger<CountryController> logger, IMapper mapper, ICountryService countryService)
 		{
 			_logger = logger;
-			_countryRepository = countryRepository;
+			_mapper = mapper;
+			_countryService = countryService;
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var countries = await _countryRepository.GetAsync();
+			var countries = await _countryService.GetAllCountries();
+			var countriesResources = _mapper.Map<IEnumerable<Country>, IEnumerable<CountryResource>>(countries);
 
-			return new OkObjectResult(countries);
+			return new OkObjectResult(countriesResources);
 		}
 
 		[HttpGet("{code}")]
 		public async Task<IActionResult> Get(string code)
 		{
-			var countries = await _countryRepository.FindByCodeAsync(code);
+			var countries = await _countryService.GetByCodeAsync(code);
 
 			return new OkObjectResult(countries);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Post(CountryModel model)
+		public async Task<IActionResult> CreateCountry(CountryModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				var countryEntity = new CountryEntity()
-				{
-					Code = model.Code.ToUpper(),
-					IsActive = true,
-					Name = model.Name
-				};
+				//var countryEntity = new CountryEntity()
+				//{
+				//	Code = model.Code.ToUpper(),
+				//	IsActive = true,
+				//	Name = model.Name
+				//};
 
-				_countryRepository.Insert(countryEntity);
+				//_countryRepository.Insert(countryEntity);
 
 				return new OkResult();
 			}
@@ -69,14 +74,14 @@ namespace Trip.API.Controllers
 				if (model.Id == 0)
 					throw new Exception("Parameter ID is mandatory");
 				
-				var countryEntity = new CountryEntity()
-				{
-					Code = model.Code.ToUpper(),
-					IsActive = true,
-					Name = model.Name
-				};
+				//var countryEntity = new CountryEntity()
+				//{
+				//	Code = model.Code.ToUpper(),
+				//	IsActive = true,
+				//	Name = model.Name
+				//};
 
-				_countryRepository.Update(countryEntity);
+				//_countryRepository.Update(countryEntity);
 
 				return new OkResult();
 			}
@@ -91,10 +96,10 @@ namespace Trip.API.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (id == 0)
-					throw new Exception("Parameter ID is mandatory");
+				//if (id == 0)
+				//	throw new Exception("Parameter ID is mandatory");
 
-				_countryRepository.Delete(id);
+				//_countryRepository.Delete(id);
 
 				return new OkResult();
 			}

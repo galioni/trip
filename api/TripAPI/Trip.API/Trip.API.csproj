@@ -12,7 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Trip.API.Core\Trip.API.Core.csproj" />
-    <ProjectReference Include="..\Trip.API.Infrastructure\Trip.API.Infrastructure.csproj" />
+    <ProjectReference Include="..\Trip.API.Data\Trip.API.Data.csproj" />
+    <ProjectReference Include="..\Trip.Api.Service\Trip.Api.Service.csproj" />
   </ItemGroup>
 
 
