@@ -1,14 +1,14 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Trip.API.Core.Mapping;
+using Trip.API.Core.Repositories;
 using Trip.API.Infrastructure;
 using Trip.API.Infrastructure.Context;
-using Trip.API.Infrastructure.Repositories;
-using AutoMapper;
-using Trip.API.Infrastructure.Mapping;
 
 namespace Trip.API
 {

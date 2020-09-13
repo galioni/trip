@@ -13,7 +13,7 @@ namespace Trip.API.Infrastructure.Context
 		{
 		}
 
-		public DbSet<Country> Countries { set; get; }
+		public DbSet<CountryEntity> Countries { set; get; }
 
 		public override int SaveChanges()
 		{

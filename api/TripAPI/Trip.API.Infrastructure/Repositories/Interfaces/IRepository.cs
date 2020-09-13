@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Trip.API.Infrastructure.Entities;
 
 namespace Trip.API.Infrastructure.Repositories
 {
-	public interface IRepository<TEntity> where TEntity : class
+	public interface IRepository<TEntity> where TEntity : BaseEntity
 	{
 		void Delete(TEntity entityToDelete);
 		void Delete(object id);

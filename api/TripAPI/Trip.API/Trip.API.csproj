@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Trip.API.Core\Trip.API.Core.csproj" />
     <ProjectReference Include="..\Trip.API.Infrastructure\Trip.API.Infrastructure.csproj" />
   </ItemGroup>
 

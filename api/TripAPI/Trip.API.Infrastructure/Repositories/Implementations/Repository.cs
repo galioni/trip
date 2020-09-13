@@ -5,15 +5,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Trip.API.Infrastructure.Context;
+using Trip.API.Infrastructure.Entities;
 
 namespace Trip.API.Infrastructure.Repositories
 {
-	public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{
 		internal TripDbContext context;
 		internal DbSet<TEntity> dbSet;
 
-		public GenericRepository(TripDbContext context)
+		public Repository(TripDbContext context)
 		{
 			this.context = context;
 			this.dbSet = context.Set<TEntity>();

@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Trip.API.Infrastructure.Entities;
 using Trip.API.Infrastructure.Repositories;
 
 namespace Trip.API.Infrastructure
 {
 	public interface IUnitOfWork
 	{
-		IRepository<T> GetRepository<T>() where T : class;
+		IRepository<T> GetRepository<T>() where T : BaseEntity;
 
 		int Commit();
 

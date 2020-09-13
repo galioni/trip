@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Implementations\" />
-    <Folder Include="Services\Interfaces\" />
+    <ProjectReference Include="..\Trip.API.Infrastructure\Trip.API.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

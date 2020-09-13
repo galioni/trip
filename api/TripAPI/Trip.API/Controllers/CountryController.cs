@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
+using Trip.API.Core.Repositories;
 using Trip.API.Infrastructure;
 using Trip.API.Infrastructure.Entities;
-using Trip.API.Infrastructure.Repositories;
 using Trip.API.Models;
 
 namespace Trip.API.Controllers
@@ -13,20 +14,18 @@ namespace Trip.API.Controllers
 	public class CountryController : ControllerBase
 	{
 		private readonly ILogger<CountryController> _logger;
-		private IUnitOfWork _unitOfWork = null;
 		private ICountryRepository _countryRepository = null;
 
-		public CountryController(ILogger<CountryController> logger, IUnitOfWork unitOfWork, ICountryRepository countryRepository)
+		public CountryController(ILogger<CountryController> logger, ICountryRepository countryRepository)
 		{
 			_logger = logger;
-			_unitOfWork = unitOfWork;
 			_countryRepository = countryRepository;
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var countries = await _unitOfWork.GetRepository<Country>().GetAsync();
+			var countries = await _countryRepository.GetAsync();
 
 			return new OkObjectResult(countries);
 		}
@@ -42,17 +41,67 @@ namespace Trip.API.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post(CountryModel model)
 		{
-			var countryEntity = new Country()
+			if (ModelState.IsValid)
 			{
-				Code = model.Code,
-				IsActive = true,
-				Name = model.Name
-			};
+				var countryEntity = new CountryEntity()
+				{
+					Code = model.Code.ToUpper(),
+					IsActive = true,
+					Name = model.Name
+				};
 
-			_unitOfWork.GetRepository<Country>().Insert(countryEntity);
-			_unitOfWork.Commit();
+				_countryRepository.Insert(countryEntity);
 
-			return new OkResult();
+				return new OkResult();
+			}
+			else
+			{
+				return BadRequest();
+			}
+			
+		}
+
+		[HttpPut]
+		public async Task<IActionResult> Put(CountryModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				if (model.Id == 0)
+					throw new Exception("Parameter ID is mandatory");
+				
+				var countryEntity = new CountryEntity()
+				{
+					Code = model.Code.ToUpper(),
+					IsActive = true,
+					Name = model.Name
+				};
+
+				_countryRepository.Update(countryEntity);
+
+				return new OkResult();
+			}
+			else
+			{
+				return BadRequest();
+			}
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> Delete(int id)
+		{
+			if (ModelState.IsValid)
+			{
+				if (id == 0)
+					throw new Exception("Parameter ID is mandatory");
+
+				_countryRepository.Delete(id);
+
+				return new OkResult();
+			}
+			else
+			{
+				return BadRequest();
+			}
 		}
 	}
 }

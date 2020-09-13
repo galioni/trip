@@ -3,7 +3,7 @@
 namespace Trip.API.Infrastructure.Entities
 {
 	[Table("Country")]
-	public class Country : BaseEntity
+	public class CountryEntity : BaseEntity
 	{
 		public string Name { get; set; }
 		public string Code { get; set; }

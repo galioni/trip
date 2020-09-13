@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Trip.API.Core.Domain.Entities
+namespace Trip.API.Core.Domain
 {
 	public class Country
 	{
