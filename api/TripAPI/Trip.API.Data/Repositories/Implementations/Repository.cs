@@ -9,13 +9,13 @@ using Trip.API.Data.Context;
 
 namespace Trip.API.Data.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly TripDbContext Context;
 
         public Repository(TripDbContext context)
         {
-            this.Context = context;
+            Context = context;
         }
         public async Task AddAsync(TEntity entity)
         {

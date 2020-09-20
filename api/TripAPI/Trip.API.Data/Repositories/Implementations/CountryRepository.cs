@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Trip.API.Core.Models;
 using Trip.API.Core.Repositories;
@@ -14,16 +11,12 @@ namespace Trip.API.Implementations.Repositories
 	{
 		public CountryRepository(TripDbContext context)
 			: base(context)
-		{ }
-
-		public Task<Country> FindByCodeAsync(string code)
 		{
-			throw new NotImplementedException();
 		}
 
-		Task<Country> ICountryRepository.FindByCodeAsync(string code)
+		async Task<Country> ICountryRepository.FindByCodeAsync(string code)
 		{
-			throw new NotImplementedException();
+			return await Context.Set<Country>().SingleOrDefaultAsync(c => c.Code.ToUpper() == code.ToUpper());
 		}
 	}
 }

@@ -4,10 +4,11 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Trip.API.Core.Exceptions;
 using Trip.API.Core.Models;
 using Trip.API.Core.Services.Interfaces;
-using Trip.API.Models;
 using Trip.API.Resources;
+using Trip.API.Validators;
 
 namespace Trip.API.Controllers
 {
@@ -26,86 +27,101 @@ namespace Trip.API.Controllers
 			_countryService = countryService;
 		}
 
-		[HttpGet]
-		public async Task<IActionResult> Get()
+		[HttpGet("")]
+		public async Task<ActionResult<IEnumerable<CountryResource>>> GetAll()
 		{
-			var countries = await _countryService.GetAllCountries();
+			var countries = await _countryService.GetAll();
 			var countriesResources = _mapper.Map<IEnumerable<Country>, IEnumerable<CountryResource>>(countries);
 
-			return new OkObjectResult(countriesResources);
+			return Ok(countriesResources);
 		}
 
-		[HttpGet("{code}")]
-		public async Task<IActionResult> Get(string code)
+		[HttpGet("get-by-id")]
+		public async Task<ActionResult<CountryResource>> GetById(int id)
 		{
-			var countries = await _countryService.GetByCodeAsync(code);
+			var countries = await _countryService.GetById(id);
 
-			return new OkObjectResult(countries);
+			return Ok(countries);
+		}
+
+		[HttpGet("get-by-code")]
+		public async Task<ActionResult<CountryResource>> GetByCode(string code)
+		{
+			var countries = await _countryService.GetByCode(code);
+
+			return Ok(countries);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateCountry(CountryModel model)
+		public async Task<ActionResult<CountryResource>> CreateCountry(CountryResource countryResource)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				//var countryEntity = new CountryEntity()
-				//{
-				//	Code = model.Code.ToUpper(),
-				//	IsActive = true,
-				//	Name = model.Name
-				//};
+				var validator = new CountryResourceValidator();
+				var validationResult = await validator.ValidateAsync(countryResource);
 
-				//_countryRepository.Insert(countryEntity);
+				if (!validationResult.IsValid)
+					return BadRequest(validationResult.Errors);
 
-				return new OkResult();
+				var countryToCreate = _mapper.Map<CountryResource, Country>(countryResource);
+
+				var newCountry = await _countryService.CreateCountry(countryToCreate);
+				var newCountryResource = _mapper.Map<Country, CountryResource>(newCountry);
+				return Ok(newCountryResource);
 			}
-			else
+			catch (BusinessException ex)
 			{
-				return BadRequest();
+				_logger.LogWarning(ex.HandledErrorMessage);
+				return StatusCode(500, ex.HandledErrorMessage);
 			}
-			
 		}
 
-		[HttpPut]
-		public async Task<IActionResult> Put(CountryModel model)
+		[HttpPut("{id}")]
+		public async Task<ActionResult<CountryResource>> UpdateCountry(int id, CountryResource countryResource)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				if (model.Id == 0)
-					throw new Exception("Parameter ID is mandatory");
-				
-				//var countryEntity = new CountryEntity()
-				//{
-				//	Code = model.Code.ToUpper(),
-				//	IsActive = true,
-				//	Name = model.Name
-				//};
+				var validator = new CountryResourceValidator();
+				var validationResult = await validator.ValidateAsync(countryResource);
 
-				//_countryRepository.Update(countryEntity);
+				if (!validationResult.IsValid)
+					return BadRequest(validationResult.Errors);
 
-				return new OkResult();
+				var countryToBeUpdated = await _countryService.GetById(id);
+
+				if (countryToBeUpdated == null)
+					return NotFound();
+
+				var country = _mapper.Map<CountryResource, Country>(countryResource);
+
+				await _countryService.UpdateCountry(countryToBeUpdated, country);
+
+				var updatedCountry = await _countryService.GetById(id);
+
+				var updatedCountryResource = _mapper.Map<Country, CountryResource>(updatedCountry);
+
+				return Ok(updatedCountryResource);
 			}
-			else
+			catch (BusinessException ex)
 			{
-				return BadRequest();
+				_logger.LogWarning(ex.Message);
+				return StatusCode(500, ex.HandledErrorMessage);
 			}
 		}
 
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				//if (id == 0)
-				//	throw new Exception("Parameter ID is mandatory");
+				await _countryService.DeleteCountry(id);
 
-				//_countryRepository.Delete(id);
-
-				return new OkResult();
+				return NoContent();
 			}
-			else
+			catch (Exception ex)
 			{
-				return BadRequest();
+				_logger.LogWarning(ex.Message);
+				return StatusCode(500, ex.Message);
 			}
 		}
 	}

@@ -1,10 +1,14 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Trip.API.Core;
 using Trip.API.Core.Services.Implementations;
 using Trip.API.Core.Services.Interfaces;
@@ -31,10 +35,15 @@ namespace Trip.API
 			{
 				options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("Trip.API.Data"));
 				options.UseLazyLoadingProxies(true);
-			});
+			}, ServiceLifetime.Transient);
 
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddTransient<ICountryService, CountryService>();
+
+			services.AddSwaggerGen(options =>
+			{
+				options.SwaggerDoc("v1", new OpenApiInfo { Title = "Trip", Version = "v1" });
+			});
 
 			services.AddAutoMapper(typeof(Startup));
 		}
@@ -49,6 +58,16 @@ namespace Trip.API
 
 			app.UseHttpsRedirection();
 
+			app.UseExceptionHandler(a => a.Run(async context =>
+			{
+				var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+				var exception = exceptionHandlerPathFeature.Error;
+
+				var result = JsonConvert.SerializeObject(new { error = exception.Message });
+				context.Response.ContentType = "application/json";
+				await context.Response.WriteAsync(result);
+			}));
+
 			app.UseRouting();
 
 			app.UseAuthorization();
@@ -56,6 +75,12 @@ namespace Trip.API
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
+			});
+
+			app.UseSwagger();
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip V1");
 			});
 		}
 	}
